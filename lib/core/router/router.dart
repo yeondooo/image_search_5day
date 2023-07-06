@@ -15,7 +15,7 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return ChangeNotifierProvider(
           create: (_) => MainViewModel(
-            GetTopFiveMoseViewdImagesUseCase(
+            GetTopFiveMostViewdImagesUseCase(
               PixabayPhotoRespositoryImpl(),
             ),
           ),

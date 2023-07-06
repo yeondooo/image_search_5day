@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_search_5day/presentation/main/main_ui_event.dart';
 import 'package:image_search_5day/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,32 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      context.read<MainViewModel>().eventStream.listen((event) {
+        switch (event) {
+          case ShowSnackBar(:final message):
+            final snackBar = SnackBar(
+              content: Center(
+                child: Text(message),
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          case EndLoading(:final message):
+            final snackBar = SnackBar(
+              content: Center(
+                child: Text(message),
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      });
+    });
+  }
 
   @override
   void dispose() {
@@ -48,11 +75,6 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
               ),
-              if (state.photos.isEmpty)
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text('검색 결과는 조회수 순으로 10개가 정렬됩니다.'),
-                ),
               const SizedBox(height: 8),
               Expanded(
                 child: GridView.builder(

@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:image_search_5day/core/result.dart';
 import 'package:image_search_5day/domain/use_case/get_top_five_most_viewd_images_use_case.dart';
 import 'package:image_search_5day/presentation/main/main_state.dart';
 import 'package:image_search_5day/presentation/main/main_ui_event.dart';
 
 class MainViewModel with ChangeNotifier {
-  final GetTopFiveMoseViewdImagesUseCase _getTopFiveMoseViewdImagesUseCase;
+  final GetTopFiveMostViewdImagesUseCase _getTopFiveMoseViewdImagesUseCase;
   final _eventController = StreamController<MainUiEvent>();
 
   Stream<MainUiEvent> get eventStream => _eventController.stream;
@@ -24,11 +25,16 @@ class MainViewModel with ChangeNotifier {
 
     _state = state.copyWith(isLoading: true);
     notifyListeners();
+    final result = await _getTopFiveMoseViewdImagesUseCase.execute(query);
 
-    _eventController.add(const EndLoading('검색 결과는 조회수 순으로 10개가 정렬됩니다.'));
-    _state = state.copyWith(
-        photos: await _getTopFiveMoseViewdImagesUseCase.execute(query),
-        isLoading: false);
-    notifyListeners();
+    switch (result) {
+      case Success(:final data):
+        _eventController.add(const EndLoading('검색 결과는 조회수 순으로 10개가 정렬됩니다.'));
+        _state = state.copyWith(photos: data, isLoading: false);
+        notifyListeners();
+
+      case Error(:final e):
+        _eventController.add(ShowSnackBar(e));
+    }
   }
 }

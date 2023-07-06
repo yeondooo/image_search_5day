@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_5day/data/repository/pixabay_photo_respository_impl.dart';
+import 'package:image_search_5day/domain/model/photo.dart';
 import 'package:image_search_5day/domain/use_case/get_top_five_most_viewd_images_use_case.dart';
 import 'package:image_search_5day/presentation/detail/detail_screen.dart';
 import 'package:image_search_5day/presentation/main/main_screen.dart';
@@ -25,7 +26,8 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'detail',
           builder: (BuildContext context, GoRouterState state) {
-            return const DetailScreen();
+            final photo = state.extra as Photo;
+            return DetailScreen(photo: photo);
           },
         ),
       ],

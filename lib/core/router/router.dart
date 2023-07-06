@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_5day/data/repository/pixabay_photo_respository_impl.dart';
+import 'package:image_search_5day/domain/use_case/get_top_five_most_viewd_images_use_case.dart';
 import 'package:image_search_5day/presentation/detail/detail_screen.dart';
 import 'package:image_search_5day/presentation/main/main_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +13,11 @@ final GoRouter router = GoRouter(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
         return ChangeNotifierProvider(
-          create: (_) => MainViewModel(),
+          create: (_) => MainViewModel(
+            GetTopFiveMoseViewdImagesUseCase(
+              PixabayPhotoRespositoryImpl(),
+            ),
+          ),
           child: const MainScreen(),
         );
       },

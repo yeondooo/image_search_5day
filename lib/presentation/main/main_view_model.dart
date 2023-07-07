@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:image_search_5day/core/result.dart';
-import 'package:image_search_5day/domain/use_case/get_top_five_most_viewd_images_use_case.dart';
+import 'package:image_search_5day/domain/use_case/get_top_ten_most_viewd_images_use_case.dart';
 import 'package:image_search_5day/presentation/main/main_state.dart';
 import 'package:image_search_5day/presentation/main/main_ui_event.dart';
 
 class MainViewModel with ChangeNotifier {
-  final GetTopFiveMostViewdImagesUseCase _getTopFiveMoseViewdImagesUseCase;
+  final GetTopTenMostViewdImagesUseCase _getTopTenMostViewdImagesUseCase;
   final _eventController = StreamController<MainUiEvent>();
 
   Stream<MainUiEvent> get eventStream => _eventController.stream;
 
-  MainViewModel(this._getTopFiveMoseViewdImagesUseCase);
+  MainViewModel(this._getTopTenMostViewdImagesUseCase);
 
   MainState _state = const MainState();
 
@@ -25,7 +25,7 @@ class MainViewModel with ChangeNotifier {
 
     _state = state.copyWith(isLoading: true);
     notifyListeners();
-    final result = await _getTopFiveMoseViewdImagesUseCase.execute(query);
+    final result = await _getTopTenMostViewdImagesUseCase.execute(query);
 
     switch (result) {
       case Success(:final data):

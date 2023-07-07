@@ -2,10 +2,10 @@ import 'package:image_search_5day/core/result.dart';
 import 'package:image_search_5day/domain/model/photo.dart';
 import 'package:image_search_5day/domain/repository/photo_repository.dart';
 
-class GetTopFiveMostViewdImagesUseCase {
+class GetTopTenMostViewdImagesUseCase {
   final PhotoRepository _repository;
 
-  GetTopFiveMostViewdImagesUseCase(this._repository);
+  GetTopTenMostViewdImagesUseCase(this._repository);
 
   Future<Result<List<Photo>>> execute(String query) async {
     try {

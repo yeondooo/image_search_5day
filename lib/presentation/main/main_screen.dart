@@ -28,13 +28,6 @@ class _MainScreenState extends State<MainScreen> {
               ),
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          case EndLoading(:final message):
-            final snackBar = SnackBar(
-              content: Center(
-                child: Text(message),
-              ),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       });
     });

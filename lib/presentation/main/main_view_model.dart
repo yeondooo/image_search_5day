@@ -29,7 +29,7 @@ class MainViewModel with ChangeNotifier {
 
     switch (result) {
       case Success(:final data):
-        _eventController.add(const EndLoading('검색 결과는 조회수 순으로 10개가 정렬됩니다.'));
+        _eventController.add(const ShowSnackBar('검색 결과는 조회수 순으로 10개가 정렬됩니다.'));
         _state = state.copyWith(photos: data, isLoading: false);
         notifyListeners();
 

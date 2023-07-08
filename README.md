@@ -2,7 +2,7 @@
 실력 향상을 위해 [매일 하나의 앱을 만들고 기록](https://youtube.com/playlist?list=PLqalTSLVTm5tldlM57kHnRvG7feOenQMN)합니다.<br>
 검색어를 입력하면 입력값에 따라 조회수가 높은 순으로 이미지 10개를 사용자에게 보여주는 서비스 입니다.
 
-<img src="https://github.com/yeondooo/image_search_5day/assets/97602748/08853149-8b5d-4ded-a03a-f0ec8f75b93e" width="600">
+<img src="https://github.com/yeondooo/image_search_5day/assets/97602748/16e47bc2-a000-4433-8abd-abc2fed7189a" width="600">
 
 ## ⚙️ 구현 기능
 
@@ -14,7 +14,6 @@
 
 - stream과 sealed 클래스를 활용하여 ui event를 구현했습니다.
   https://github.com/yeondooo/image_search_5day/blob/bb4727d0ad8e0987a92a1fda76d366f5ddc5a6b5/lib/presentation/main/main_ui_event.dart#L1-L11
-
 
 
 ## ⚒️ 기술 스택
@@ -32,4 +31,6 @@ build_runner
  
 
 ## 🖥️ 구현 화면
-![ezgif com-video-to-gif](https://github.com/yeondooo/image_search_5day/assets/97602748/f722bad4-6edc-421c-a17c-9be1695c8e1d)
+![image_search](https://github.com/yeondooo/image_search_5day/assets/97602748/5428bb02-c233-4ce6-a573-7168397e7552)
+
+

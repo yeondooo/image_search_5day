@@ -10,19 +10,79 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('디테일 페이지'),
+        title: Text('views: ${photo.views}'),
       ),
-      body: Column(
-        children: [
-          Hero(
-            tag: photo.id,
-            child: Image.network(
-              photo.webformatURL,
-              fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: [
+                  ClipOval(
+                    child: Image.network(
+                      photo.userImageURL,
+                      width: 40,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    photo.user,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Text('조회수: ${photo.views}'),
-        ],
+            const SizedBox(height: 8),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width,
+              child: Hero(
+                tag: photo.id,
+                child: Image.network(
+                  photo.webformatURL,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.favorite_border),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${photo.likes}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Icon(Icons.tag),
+                      const SizedBox(width: 8),
+                      Text(
+                        photo.tags,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
